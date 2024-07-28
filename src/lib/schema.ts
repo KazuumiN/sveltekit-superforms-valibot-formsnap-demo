@@ -1,8 +1,8 @@
-import { object, string, email, minLength } from 'valibot';
+import * as v from 'valibot';
 
-export const schema = object({
+export const schema = v.object({
 	// メールアドレスの形式であることを検証
-	email: string([email('メールアドレスの形式で入力してください')]),
+	email: v.pipe(v.string(), v.email('メールアドレスの形式で入力してください')),
 	// 8文字以上の文字列であることを検証
-	password: string([minLength(8, '8文字以上で入力してください')])
+	password: v.pipe(v.string(), v.minLength(8, '8文字以上で入力してください'))
 });
